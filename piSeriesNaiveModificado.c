@@ -1,3 +1,7 @@
+// Laboratorio 1 Computacion Paralela
+// Stefano Aragoni, Roberto Vallecillos, Carol Arevalo
+// Series de Pi sin dependencia en el loop
+
 #include <stdio.h>
 #include <omp.h>
 

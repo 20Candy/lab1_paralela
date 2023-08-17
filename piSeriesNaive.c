@@ -1,3 +1,7 @@
+// Laboratorio 1 Computacion Paralela
+// Stefano Aragoni, Roberto Vallecillos, Carol Arevalo
+// Series de PI Naive
+
 #include <stdio.h>
 #include <omp.h>
 
