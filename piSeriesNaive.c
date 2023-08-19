@@ -6,21 +6,31 @@
 #include <omp.h>
 
 int main() {
-    int n = 10000000;  
-    int thread_count = 6; 
-    double factor = 1.0;
-    double sum = 0.0;
-    double pi_approx;
+    int n = 10e6;  
+    int thread_count = 4; 
 
-    #pragma omp parallel for num_threads(thread_count) reduction(+:sum)
-    for (int k = 0; k < n; k++) {
-        sum += factor / (2.0 * k + 1.0);
-        factor = -factor;
+    // 5 iteraciones para poder llenar las tablas
+    for (int i = 0; i < 5; i++) { 
+        double factor = 1.0;
+        double sum = 0.0;
+        double pi_approx;
+        double start_time, end_time;
+
+        start_time = omp_get_wtime();
+
+        #pragma omp parallel for num_threads(thread_count) reduction(+:sum)
+        for (int k = 0; k < n; k++) {
+            sum += factor / (2.0 * k + 1.0);
+            factor = -factor;
+        }
+
+        pi_approx = 4.0 * sum;
+
+        end_time = omp_get_wtime();
+        printf("Valor de PI: %.20f, Tiempo: %f\n", pi_approx, end_time - start_time);
+
+
     }
-
-    pi_approx = 4.0 * sum;
-
-    printf("Valor de PI: %.20f\n", pi_approx);
 
     return 0;
 }

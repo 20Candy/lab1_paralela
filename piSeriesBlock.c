@@ -8,15 +8,15 @@
 int main() {
     int n = 10e6;  
     int thread_count = omp_get_num_procs();  // retorna el número de procesadores de la maquina virtual
-    double pi_approx;
 
-    omp_sched_t scheduleType = 0;
+    omp_sched_t scheduleType = omp_sched_static;
     int chunkSize = 16;
-
     omp_set_schedule(scheduleType, chunkSize); // politica de planificacion y tamaño de bloque
 
+    // 5 iteraciones para poder llenar las tablas
     for (int i = 0; i < 5; i++) {
 
+        double pi_approx;
         double sum = 0.0;
         double factor = 1.0;
         double start_time, end_time;
@@ -29,9 +29,9 @@ int main() {
             sum += factor / (2.0 * k + 1.0);
         }
 
-        end_time = omp_get_wtime();
-
         pi_approx = 4.0 * sum;
+
+        end_time = omp_get_wtime();
         printf("Valor de PI: %.20f, Tiempo: %f\n", pi_approx, end_time - start_time);
 
     }
