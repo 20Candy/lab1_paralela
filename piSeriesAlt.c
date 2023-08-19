@@ -6,25 +6,29 @@
 #include <omp.h>
 
 int main() {
-    int n = 100000;  
-    int thread_count = 4;  
-    double pi_approx = 0.0;
+    int n = 10000000;  
+    int thread_count = 6; 
+    double pi_approx;
 
-    #pragma omp parallel num_threads(thread_count)
-    {
-        double local_sum = 0.0;
+    double sum_pos = 0.0;
+    double sum_neg = 0.0;
 
-        #pragma omp for
-        for (int i = 0; i < n; i++) {
-            double term = (i % 2 == 0) ? 1.0 / (2.0 * i + 1) : -1.0 / (2.0 * i + 1);
-            local_sum += term;
+    #pragma omp parallel for num_threads(thread_count) reduction(+:sum_pos)
+    for (int k = 0; k < n; k++) {
+        if (k % 2 == 0) {
+            sum_pos += 1.0 / (2.0 * k + 1.0);
         }
-
-        #pragma omp critical
-        pi_approx += local_sum;
     }
 
-    pi_approx *= 4.0;
+    #pragma omp parallel for num_threads(thread_count) reduction(+:sum_neg)
+    for (int k = 0; k < n; k++) {
+        if (k % 2 != 0) {
+            sum_neg += 1.0 / (2.0 * k + 1.0);
+        }
+    }
+
+    double sum = sum_pos - sum_neg;
+    pi_approx = 4.0 * sum;
 
     printf("Valor de PI: %.20f\n", pi_approx);
 
