@@ -32,7 +32,7 @@ int main() {
         end_time = omp_get_wtime();
 
         pi_approx = 4.0 * sum;
-        printf("Valor de PI: %.20f, Tiempo: %f\n", i + 1, pi_approx, end_time - start_time);
+        printf("Valor de PI: %.20f, Tiempo: %f\n", pi_approx, end_time - start_time);
 
     }
 
