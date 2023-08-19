@@ -6,8 +6,8 @@
 #include <omp.h>
 
 int main() {
-    int n = 1000000;  
-    int thread_count = 2; 
+    int n = 10000000;  
+    int thread_count = 6; 
     double factor = 1.0;
     double sum = 0.0;
     double pi_approx;
