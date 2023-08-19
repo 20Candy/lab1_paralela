@@ -25,7 +25,7 @@ int main() {
 
     pi_approx = 4.0 * sum;
 
-    printf("Approximate value of PI: %.10f\n", pi_approx);
+    printf("Valor de PI: %f\n", pi_approx);
 
     return 0;
 }
