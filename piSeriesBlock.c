@@ -10,6 +10,10 @@ int main() {
     int thread_count = omp_get_num_procs();  // retorna el número de procesadores de la maquina virtual
 
     omp_sched_t scheduleType = omp_sched_static;
+    //omp_sched_t scheduleType = omp_sched_dynamic;
+    //omp_sched_t scheduleType = omp_sched_guided;
+    //omp_sched_t scheduleType = omp_sched_auto;
+
     int chunkSize = 16;
     omp_set_schedule(scheduleType, chunkSize); // politica de planificacion y tamaño de bloque
 
