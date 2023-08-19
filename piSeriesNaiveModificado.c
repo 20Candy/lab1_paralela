@@ -7,13 +7,14 @@
 
 int main() {
     int n = 10000000;  
-    int thread_count = 1;  
+    int thread_count = 2;  
     double sum = 0.0;
     double pi_approx;
+    double factor = 1.0;
 
     #pragma omp parallel for num_threads(thread_count) reduction(+:sum)
     for (int k = 0; k < n; k++) {
-        double factor = (k % 2 == 0) ? 1.0 : -1.0;
+        factor = (k % 2 == 0) ? 1.0 : -1.0;
         sum += factor / (2.0 * k + 1.0);
     }
 
