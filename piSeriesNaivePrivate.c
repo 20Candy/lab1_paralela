@@ -6,11 +6,11 @@
 #include <omp.h>
 
 int main() {
-    int n = 10e6;  
-    int thread_count = 4;
-
     // 5 iteraciones para poder llenar las tablas
     for (int i = 0; i < 5; i++) {
+        
+        int n = 10e6;  
+        int thread_count = 4;
         double factor = 1.0;
         double sum = 0.0;
         double pi_approx;
@@ -28,6 +28,7 @@ int main() {
 
         end_time = omp_get_wtime();
         printf("Valor de PI: %.20f, Tiempo: %f\n", pi_approx, end_time - start_time);
+        
     }
 
     return 0;

@@ -6,8 +6,6 @@
 #include <omp.h>
 
 int main() {
-    int n = 10e6;  
-    int thread_count = omp_get_num_procs();  // retorna el número de procesadores de la maquina virtual
 
     omp_sched_t scheduleType = omp_sched_static;
     //omp_sched_t scheduleType = omp_sched_dynamic;
@@ -19,6 +17,9 @@ int main() {
 
     // 5 iteraciones para poder llenar las tablas
     for (int i = 0; i < 5; i++) {
+
+        int n = 10e6;  
+        int thread_count = omp_get_num_procs();  // retorna el número de procesadores de la maquina virtual
 
         double pi_approx;
         double sum = 0.0;
