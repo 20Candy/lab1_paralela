@@ -18,10 +18,10 @@ int main() {
 
         start_time = omp_get_wtime();
 
-        #pragma omp parallel for num_threads(thread_count) reduction(+:sum)
+        #pragma omp parallel for num_threads(thread_count) reduction(+:sum)     // Se paralleliza el loop
         for (int k = 0; k < n; k++) {
-            sum += factor / (2.0 * k + 1.0);
-            factor = -factor;
+            sum += factor / (2.0 * k + 1.0);    // Se suma el termino de la serie
+            factor = -factor;                   // Se alterna 1 y -1 como en la serie
         }
 
         pi_approx = 4.0 * sum;

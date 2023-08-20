@@ -30,8 +30,8 @@ int main() {
 
         #pragma omp parallel for num_threads(thread_count) schedule(runtime) reduction(+:sum) private(factor)
         for (int k = 0; k < n; k++) {
-            factor = (k % 2 == 0) ? 1.0 : -1.0;
-            sum += factor / (2.0 * k + 1.0);
+            factor = (k % 2 == 0) ? 1.0 : -1.0;         // Se calcula si se usa 1 o -1
+            sum += factor / (2.0 * k + 1.0);            // Se suma el termino de la serie
         }
 
         pi_approx = 4.0 * sum;
