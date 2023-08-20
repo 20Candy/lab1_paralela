@@ -1,0 +1,9 @@
+para compilar:
+
+gcc -o NOMBREEJECUTABLE nombrearchivo.c -fopenmp        // -fopenmp es para que compile con openmp
+
+------------------------------
+para ejecutar:
+
+./NOMBREEJECUTABLE
+
