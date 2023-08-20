@@ -18,7 +18,7 @@ int main() {
 
         start_time = omp_get_wtime();
 
-        #pragma omp parallel for num_threads(thread_count) reduction(+:sum) private(factor)
+        #pragma omp parallel for num_threads(thread_count) reduction(+:sum) private(factor)     // Se define factor como privado
         for (int k = 0; k < n; k++) {
             factor = (k % 2 == 0) ? 1.0 : -1.0;         // Se calcula si se usa 1 o -1
             sum += factor / (2.0 * k + 1.0);            // Se suma el termino de la serie
